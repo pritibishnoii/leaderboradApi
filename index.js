@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const connectDB = require("./config/index")
+const connectDB = require('./config/index');
 
 const userRoutes = require('./routes/userRoutes');
 const historyRoutes = require('./routes/historyRoutes');
@@ -8,6 +8,9 @@ const historyRoutes = require('./routes/historyRoutes');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.get('/', (req, res) => {
+  res.send('LeaderBoard APIs');
+});
 
 app.use('/api/users', userRoutes);
 app.use('/api/history', historyRoutes);
@@ -20,6 +23,5 @@ connectDB()
     });
   })
   .catch((err) => {
-    console.error("Database connection failed:", err);
+    console.error('Database connection failed:', err);
   });
-
